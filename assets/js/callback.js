@@ -1,5 +1,3 @@
-const ApiData = [];
-
 const urlEndpoint = "https://iws.itcn.dk/techcollege/schedules?departmentCode=smed";
 //** vores url urlEndpoint */
 fetch(urlEndpoint)
@@ -11,8 +9,6 @@ fetch(urlEndpoint)
   .then(data => {
     //** console.log the result */
     console.log(data);
-    /** push to ApiData */
-    ApiData.push(...data.value);
   })
 
   .catch(error => {
@@ -22,5 +18,22 @@ fetch(urlEndpoint)
   /** run a function if everything is resolwed */
   .finally(() => {
     // * run the function showmehej
-    //console.log("ApiData ", ApiData.filter((a) => a.Team !=="gel080222"));
+    showmehej();
   });
+
+const hej = () => {
+  //* console.log hej if funtion has run
+  console.log("hej");
+};
+
+/** this funtion has another function passed as a prop */
+renderHej = (callback, b) => {
+  console.log(b);
+  callback();
+};
+
+// this function runs when all is fetched and runs the function
+//renderHej right away. adding the function (const) as a property
+const showmehej = () => {
+  renderHej(hej, "jeg er også med");
+};
